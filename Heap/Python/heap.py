@@ -1,12 +1,13 @@
 class Heap:
-    def __init__(self) -> None:
-        pass
-
+    def __init__(self,data) -> None:
+        self.data=data
+        
     def insert(self,data):
-        pass
+        pass        
+
     def delete(self,data):
         pass
-    def bubbleup(self):
+    def bubbleUp(self,idx):
         pass
-    def bubbledown(self):
+    def bubbleDown(self):
         pass
