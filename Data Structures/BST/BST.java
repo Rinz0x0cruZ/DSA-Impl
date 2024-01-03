@@ -11,6 +11,10 @@ public class BST<T extends Comparable<T>> {
         makeTree(arr);
     }
     public void insert(T x){
+        if(this.root==null){
+            this.root=new Node(x);
+            return ;
+        }
         Node temp=this.root;
         while(true){
             if(x.compareTo(temp.data)>0){
@@ -28,9 +32,61 @@ public class BST<T extends Comparable<T>> {
             }
         }
     }
+    public void display(){
+        Node temp=this.root;
+        traverse(temp);
+    }
+    public void update(T x){
+        Node temp=this.root;
+        while(true){
+            int a=x.compareTo(temp.data);
+            if(a>0){
+                if(temp.right==null){
+                    temp.right=new Node(x);
+                    return ;
+                }
+                temp=temp.right;
+            } else if(a<0) {
+                if(temp.left==null){ 
+                    return ;
+                }
+                temp=temp.left;
+            }
+            else {
+                temp.data=x;
+                return;
+            }
+        }
+    }
+    public void delete(T x){
+        Node temp=this.root;
+        while(true){
+            int a=x.compareTo(temp.data);
+            if(a>0){
+                if(temp.right==null){
+                    temp.right=new Node(x);
+                    return ;
+                }
+                temp=temp.right;
+            } else if(a<0) {
+                if(temp.left==null){ 
+                    return ;
+                }
+                temp=temp.left;
+            }
+            else {
+                temp=null;
+            }
+        }
+    }
     private void makeTree(T[] arr){
-        this.root=new Node(arr[0]);
         for(T x:arr) insert(x);
+    }
+    private void traverse(Node rt){
+        if(rt==null) return;
+        traverse(rt.left);
+        System.out.println(rt.data);
+        traverse(rt.right);
     }
     
 }
