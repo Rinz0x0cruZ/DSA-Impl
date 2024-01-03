@@ -2,6 +2,10 @@ public class BST<T extends Comparable<T>> {
     private class Node{
         T data;
         Node left,right;
+        Node(){
+            this.left=null;
+            this.right=null;
+        }
         Node(T data){
             this.data=data;
         }
@@ -58,13 +62,32 @@ public class BST<T extends Comparable<T>> {
             }
         }
     }
+    public Node search(T x){
+        Node temp=this.root;
+        while(true){
+            int a=x.compareTo(temp.data);
+            if(a>0){
+                if(temp.right==null){
+                    return new Node();
+                }
+                temp=temp.right;
+            } else if(a<0) {
+                if(temp.left==null){ 
+                    return new Node();
+                }
+                temp=temp.left;
+            }
+            else {
+                return temp;
+            }
+        }
+    }
     public void delete(T x){
         Node temp=this.root;
         while(true){
             int a=x.compareTo(temp.data);
             if(a>0){
                 if(temp.right==null){
-                    temp.right=new Node(x);
                     return ;
                 }
                 temp=temp.right;
@@ -76,6 +99,7 @@ public class BST<T extends Comparable<T>> {
             }
             else {
                 temp=null;
+                return ;
             }
         }
     }
